@@ -3,14 +3,11 @@ package com.fria.collect.view.main
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,23 +18,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fria.collect.R
 import com.fria.collect.model.ui.FriaProfile
-import com.fria.collect.ui.theme.FriaCollectTheme
-import com.fria.collect.ui.theme.dark42
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
-@Preview
+/**
+ * Figma - https://www.figma.com/file/dgSLK7Kp4hEYTCHKevNy42/Untitled?node-id=0%3A1&t=cd534yZ1J4k9YoMq-1
+ */
+
 @Composable
-fun MainScreen() {
-    // A surface container using the 'background' color from the theme
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = dark42
-    ) {
-        Box(
-            contentAlignment = Alignment.Center
-        ) {
-            FriaMemberRecyclerView()
-        }
-    }
+fun MainScreen(modifier: Modifier = Modifier) {
+    TabContainer()
+    ProfileStateFull()
+}
+
+@Composable
+fun TabContainer() {
+
 }
 
 object DataProvider {
@@ -50,26 +45,60 @@ object DataProvider {
     )
 }
 
+@Preview
 @Composable
-fun FriaMemberRecyclerView() {
-    val member = remember { DataProvider.member }
-    LazyRow(contentPadding = PaddingValues(16.dp, 8.dp)) {
-        items(
-            items = member,
-            itemContent = { Profile(it) }
-        )
+fun ProfileStateFull(modifier: Modifier = Modifier) {
+    var profileCount by remember { mutableStateOf(0) }
+
+    Profile(
+        profileCount,
+        onCountChange = {
+            profileCount = it
+        }
+    )
+}
+
+
+@Composable
+fun Profile(
+    count: Int,
+    onCountChange: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ProfileImage(member = DataProvider.member[count])
+            Row() {
+                Button(
+                    modifier = modifier.padding(16.dp),
+                    onClick = { onCountChange(count - 1) },
+                    enabled = count > -1 && count < 5
+                ) {
+                    Text("이전")
+                }
+                Button(
+                    modifier = modifier.padding(16.dp),
+                    onClick = { onCountChange(count + 1) },
+                    enabled = count > -1 && count < 5
+                ) {
+                    Text("다음")
+                }
+            }
+        }
     }
 }
 
 @Composable
-fun Profile(member: FriaProfile) {
+fun ProfileImage(member: FriaProfile) {
     Row {
         Image(
             painter = painterResource(member.image),
             contentDescription = "Profile",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(100.dp)
+                .size(300.dp)
                 .clip(CircleShape)
                 .border(2.dp, Color.Gray, CircleShape)
         )

@@ -13,13 +13,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.fria.collect.R
 import com.fria.collect.model.ui.FriaProfile
 import com.fria.collect.ui.theme.FriaCollectTheme
+import com.fria.collect.ui.theme.dark42
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             FriaCollectTheme {
-                MainScreen()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = dark42
+                ) {
+                    MainScreen()
+                }
             }
         }
     }
