@@ -18,7 +18,8 @@ import androidx.core.view.ViewCompat
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    onBackground = dark42
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -37,6 +38,9 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+/**
+ * 일단 모두 Dark Mode 이후 디자인 끝나면 Light Mode 추가
+ */
 @Composable
 fun FriaCollectTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -50,7 +54,7 @@ fun FriaCollectTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else -> DarkColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
