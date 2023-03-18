@@ -1,9 +1,9 @@
 package com.fria.collect.view.main
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -25,12 +25,13 @@ import kotlinx.coroutines.launch
  * Figma - https://www.figma.com/file/dgSLK7Kp4hEYTCHKevNy42/Untitled?node-id=0%3A1&t=cd534yZ1J4k9YoMq-1
  */
 
-@OptIn(ExperimentalPagerApi::class)
 @Preview
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    TabStateFull(modifier = modifier)
-    ProfileStateFull()
+    Column {
+        Profile(modifier = modifier)
+        TabStateFull(modifier = modifier)
+    }
 }
 
 object DataProvider {
@@ -43,55 +44,31 @@ object DataProvider {
     )
 }
 
-@Preview
-@Composable
-fun ProfileStateFull(modifier: Modifier = Modifier) {
-    var profileCount by remember { mutableStateOf(0) }
-    Profile(
-        profileCount,
-        onCountChange = {
-            profileCount = it
-        }
-    )
-}
-
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Profile(
-    count: Int,
-    onCountChange: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        HorizontalPager(
-            count = DataProvider.member.size,
-            modifier = Modifier
-        ) { page ->
-            // Content of the pager
-            ProfileImage(member = DataProvider.member[page])
-        }
+    HorizontalPager(
+        count = DataProvider.member.size,
+        modifier = modifier
+    ) { page ->
+        // Content of the pager
+        ProfileImage(member = DataProvider.member[page])
     }
 }
 
 @Composable
 fun ProfileImage(member: FriaProfile) {
-    Row(
-        modifier = Modifier.heightIn(min = 168.dp)
-    ) {
-        Image(
-            painter = painterResource(member.image),
-            contentDescription = "Profile",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(200.dp)
-                .clip(CircleShape)
-                .border(2.dp, Color.Gray, CircleShape)
-        )
-    }
+    Image(
+        painter = painterResource(member.image),
+        contentDescription = "Profile",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(200.dp)
+            .clip(CircleShape)
+            .border(2.dp, Color.Gray, CircleShape)
+    )
 }
 
 val tabPage = listOf("틱톡", "유튜브", "아프리카")
@@ -106,17 +83,17 @@ fun TabStateFull(modifier: Modifier) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabStateLess(pos: PagerState) {
-    val coroutineScope = rememberCoroutineScope()
-        TabRow(selectedTabIndex = pos.currentPage) {
-            tabPage.forEachIndexed { index, title ->
-                Tab(
-                    text = { Text(text = title) },
-                    selected = index == pos.currentPage,
-                    onClick = {
+    TabRow(
+        selectedTabIndex = pos.currentPage,
+    ) {
+        tabPage.forEachIndexed { index, title ->
+            Tab(
+                text = { Text(text = title) },
+                selected = index == pos.currentPage,
+                onClick = {
 
-                    }
-                )
-            }
+                }
+            )
         }
-
+    }
 }
