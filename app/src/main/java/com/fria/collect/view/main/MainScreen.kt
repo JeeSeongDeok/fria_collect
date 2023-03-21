@@ -3,7 +3,6 @@ package com.fria.collect.view.main
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -30,7 +29,7 @@ import kotlinx.coroutines.launch
 fun MainScreen(modifier: Modifier = Modifier) {
     Column {
         Profile(modifier = modifier)
-        TabStateFull(modifier = modifier)
+        ContentStateFull(modifier = modifier)
     }
 }
 
@@ -71,29 +70,49 @@ fun ProfileImage(member: FriaProfile) {
     )
 }
 
-val tabPage = listOf("틱톡", "유튜브", "아프리카")
+val tabPage = listOf("유튜브", "아프리카")
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabStateFull(modifier: Modifier) {
-    val tabPageState = rememberPagerState()
-    TabStateLess(tabPageState)
+fun ContentStateFull(modifier: Modifier) {
+    val pageState = rememberPagerState()
+    ContentTabStateLess(pageState)
+    ContentHorizontalPage(modifier, pageState)
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabStateLess(pos: PagerState) {
+fun ContentTabStateLess(pagerState: PagerState) {
+    val coroutineScope = rememberCoroutineScope()
     TabRow(
-        selectedTabIndex = pos.currentPage,
+        selectedTabIndex = pagerState.currentPage,
     ) {
         tabPage.forEachIndexed { index, title ->
             Tab(
                 text = { Text(text = title) },
-                selected = index == pos.currentPage,
+                selected = index == pagerState.currentPage,
                 onClick = {
-
+                    coroutineScope.launch {
+                        pagerState.scrollToPage(index)
+                    }
                 }
             )
         }
+    }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun ContentHorizontalPage(
+    modifier: Modifier,
+    pagerState: PagerState
+) {
+    HorizontalPager(
+        count = tabPage.size,
+        state = pagerState
+    ) { page ->
+        Text(
+            text = page.toString()
+        )
     }
 }

@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "friaCollect"
-include ':app'
+include (":app")
