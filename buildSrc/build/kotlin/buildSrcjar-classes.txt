@@ -1,0 +1,1 @@
+D:\Code\friaCollect\buildSrc\build\classes\kotlin\main\AppConfig.class;D:\Code\friaCollect\buildSrc\build\classes\kotlin\main\DependenciesKt.class;D:\Code\friaCollect\buildSrc\build\classes\kotlin\main\Libraries.class;D:\Code\friaCollect\buildSrc\build\classes\kotlin\main\Versions.class
