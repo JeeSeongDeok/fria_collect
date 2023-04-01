@@ -5,8 +5,8 @@ plugins {
 group = "com.fria.collect.buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {
@@ -24,10 +24,6 @@ gradlePlugin {
         register("androidApplication") {
             id = "fria.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
-        }
-        register("androidApplicationCompose") {
-            id = "fria.android.application.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("androidLibrary") {
             id = "fria.android.library"

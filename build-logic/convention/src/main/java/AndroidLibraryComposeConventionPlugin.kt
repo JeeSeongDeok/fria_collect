@@ -1,5 +1,3 @@
-package com.fria.convention
-
 import com.android.build.api.dsl.LibraryExtension
 import com.fria.convention.convention.configureAndroidCompose
 import org.gradle.api.Plugin

@@ -1,6 +1,4 @@
-
-
-dependencies {
-//    implementation(Libraries.ktxLibraries)
-//    implementation(Libraries.composeLibraries)
+plugins {
+    id("fria.android.application")
+//    id("fria.android.application.compose")
 }

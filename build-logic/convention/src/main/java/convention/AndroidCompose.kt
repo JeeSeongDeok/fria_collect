@@ -1,6 +1,7 @@
 package com.fria.convention.convention
 
 import com.android.build.api.dsl.CommonExtension
+import convention.kotlinOptions
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
