@@ -17,13 +17,21 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidApplicationCompose") {
+            id = "fria.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
         register("androidApplication") {
             id = "fria.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
-        register("javaLibrary") {
-            id = "fria.java.library"
-            implementationClass = "JavaLibraryConventionPlugin"
+        register("androidApplicationCompose") {
+            id = "fria.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "fria.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
         }
     }
 }
