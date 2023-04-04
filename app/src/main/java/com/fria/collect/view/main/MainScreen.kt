@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 fun MainScreen(modifier: Modifier = Modifier) {
     Column {
         Profile(modifier = modifier)
-        ContentStateFull(modifier = modifier)
+        ContentStateFull()
     }
 }
 
@@ -74,10 +74,10 @@ val tabPage = listOf("유튜브", "아프리카")
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ContentStateFull(modifier: Modifier) {
+fun ContentStateFull() {
     val pageState = rememberPagerState()
     ContentTabStateLess(pageState)
-    ContentHorizontalPage(modifier, pageState)
+    ContentHorizontalPage(pageState)
 }
 
 @OptIn(ExperimentalPagerApi::class)
@@ -104,7 +104,6 @@ fun ContentTabStateLess(pagerState: PagerState) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ContentHorizontalPage(
-    modifier: Modifier,
     pagerState: PagerState
 ) {
     HorizontalPager(
