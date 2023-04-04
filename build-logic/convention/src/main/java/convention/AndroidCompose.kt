@@ -1,5 +1,4 @@
 package com.fria.convention.convention
-
 import com.android.build.api.dsl.CommonExtension
 import convention.kotlinOptions
 import org.gradle.api.Project

@@ -19,7 +19,7 @@ gradlePlugin {
     plugins {
         register("androidApplicationCompose") {
             id = "fria.android.application.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
         register("androidApplication") {
             id = "fria.android.application"

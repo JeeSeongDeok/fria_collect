@@ -22,21 +22,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             extensions.configure<BaseAppModuleExtension> {
                 configureKotlin(this)
 
-                signingConfigs {
-                    getByName("debug") {
-                        storeFile = project.rootProject.file("debug.keystore")
-                        storePassword = "android"
-                        keyAlias = "androiddebugkey"
-                        keyPassword = "android"
-                    }
-                }
-
                 buildTypes {
-                    debug {
-                        signingConfig = signingConfigs.getByName("debug")
-                        applicationIdSuffix = ".debug"
-                    }
-
                     release {
                         postprocessing {
                             isRemoveUnusedCode = true

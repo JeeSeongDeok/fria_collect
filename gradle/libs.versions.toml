@@ -1,25 +1,31 @@
 [versions]
 androidStudioGradlePlugin = "7.3.1"
+androidxComposeCompiler = "1.4.3"
+androidxComposeBom = "2023.01.00"
 
 # AndroiX
 compose = "1.3.1"
-compose-material3 = "1.0.0"
+compose-material3 = "1.1.0-beta01"
 lifecycle = "2.3.1"
+activity = "1.7.0"
+coreKtx = "1.10.0-rc01"
 
 # 3rd-party
 accompanist = "0.23.1"
-kotlin = "1.8.0"
+kotlin = "1.8.10"
 ksp = "1.8.10-1.0.9"
 
 [libraries]
 # ktx
-ktx-core = { module = "androidx.core:core-ktx", version.ref = "kotlin" }
+ktx-core = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+ktx-activity = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 ktx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 # compose
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose-material = { module = "androidx.compose.material3:material3", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 
 
 # 3rd-party
