@@ -35,11 +35,10 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
 object DataProvider {
     val member = listOf(
-        FriaProfile("블러비", R.drawable.blur_profile),
+        FriaProfile("블러비", R.drawable.blove_profile),
         FriaProfile("고여름", R.drawable.summer_profile),
         FriaProfile("바밍", R.drawable.baming_profile),
         FriaProfile("베베리", R.drawable.bebery_profile),
-        FriaProfile("전해리", R.drawable.harry_profile),
     )
 }
 
