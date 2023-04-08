@@ -29,5 +29,9 @@ gradlePlugin {
             id = "fria.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidHilt") {
+            id = "fria.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
     }
 }
