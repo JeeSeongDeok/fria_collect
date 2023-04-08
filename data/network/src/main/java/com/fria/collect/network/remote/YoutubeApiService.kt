@@ -9,11 +9,11 @@ import retrofit2.http.Query
 
 interface YoutubeApiService {
     @GET("search")
-    fun search(
+    suspend fun search(
         @Query("part") part: String?,
         @Query("channelId") channelId: String?,
         @Query("order") order: String?,
         @Query("maxResults") maxResults: Int,
         @Query("key") apiKey: String?
-    ): Call<SearchResponse>?
+    ): SearchResponse
 }

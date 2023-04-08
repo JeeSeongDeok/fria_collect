@@ -15,6 +15,6 @@ android {
 dependencies {
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gson)
-    implementation(":model")
-    implementation(project(mapOf("path" to ":model")))
+    implementation(project(":model"))
+    implementation(project(":common"))
 }

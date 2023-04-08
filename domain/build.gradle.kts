@@ -9,11 +9,10 @@ java {
 }
 
 android {
-    namespace = "com.fria.collect.data"
+    namespace = "com.fria.collect.domain"
 }
 
 dependencies {
-    implementation(project(":data:network"))
-    implementation(project(":domain"))
     implementation(project(":model"))
+    implementation(project(":common"))
 }
