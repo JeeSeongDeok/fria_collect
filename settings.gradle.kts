@@ -17,3 +17,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "friaCollect"
 include (":app")
+include(":data")
+include(":data:network")
+include(":model")
