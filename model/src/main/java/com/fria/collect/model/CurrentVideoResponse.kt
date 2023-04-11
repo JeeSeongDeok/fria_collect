@@ -1,7 +1,7 @@
 package com.fria.collect.model
 
 
-data class SearchResponse(
+data class CurrentVideoResponse(
     val kind: String,
     val etag: String,
     val nextPageToken: String?,

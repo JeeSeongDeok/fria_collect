@@ -1,6 +1,6 @@
 package com.fria.collect.domain.data.repository
 
-import com.fria.collect.model.SearchResponse
+import com.fria.collect.model.CurrentVideoResponse
 
 interface YoutubeRepository {
     suspend fun getCurrentVideo(
@@ -9,5 +9,5 @@ interface YoutubeRepository {
         order: String,
         maxResult: Int,
         key: String
-    ) : SearchResponse
+    ) : CurrentVideoResponse
 }

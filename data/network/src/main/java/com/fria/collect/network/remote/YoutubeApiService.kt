@@ -1,8 +1,7 @@
 package com.fria.collect.network.remote
 
 
-import com.fria.collect.model.SearchResponse
-import retrofit2.Call
+import com.fria.collect.model.CurrentVideoResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,5 +14,5 @@ interface YoutubeApiService {
         @Query("order") order: String?,
         @Query("maxResults") maxResults: Int,
         @Query("key") apiKey: String?
-    ): SearchResponse
+    ): CurrentVideoResponse
 }
