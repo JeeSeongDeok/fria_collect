@@ -39,6 +39,9 @@ retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref 
 ## Hilt
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
+## test
+junit = "junit:junit:4.13.2"
+androidX-test-junit = "androidx.test.ext:junit:1.1.5"
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidStudioGradlePlugin" }

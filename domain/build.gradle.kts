@@ -15,4 +15,5 @@ android {
 dependencies {
     implementation(project(":model"))
     implementation(project(":common"))
+    implementation(libs.retrofit.core)
 }
