@@ -1,5 +1,6 @@
 package com.fria.collect.repository
 
+import com.fria.collect.InVisibleConst.KEY_YOUTUBE
 import com.fria.collect.domain.data.repository.YoutubeRepository
 import com.fria.collect.model.CurrentVideoResponse
 import com.fria.collect.network.remote.YoutubeApiService
@@ -14,8 +15,7 @@ class YoutubeRepositoryImpl @Inject constructor(
         channelId: String,
         order: String,
         maxResult: Int,
-        key: String
     ): CurrentVideoResponse {
-        return api.search(part, channelId, order, maxResult, key)
+        return api.search(part, channelId, order, maxResult, KEY_YOUTUBE)
     }
 }

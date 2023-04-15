@@ -19,7 +19,6 @@ class MainViewModel @Inject constructor(
             "UCuxfEHCAQuD9Mj8jg_S8utQ",
             "date",
             5,
-            ""
         ).onEach { result ->
             when (result) {
                 is Resource.Success -> println(result.data.toString())

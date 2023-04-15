@@ -8,6 +8,5 @@ interface YoutubeRepository {
         channelId: String,
         order: String,
         maxResult: Int,
-        key: String
     ) : CurrentVideoResponse
 }

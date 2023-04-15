@@ -17,11 +17,10 @@ class GetCurrentVideoUseCase @Inject constructor(
         channelId: String,
         order: String,
         maxInt: Int,
-        key: String
     ): Flow<Resource<CurrentVideoResponse>> = flow {
         try {
             emit(Resource.Loading())
-            val currentVideoResponse = repository.getCurrentVideo(part, channelId, order, maxInt, key)
+            val currentVideoResponse = repository.getCurrentVideo(part, channelId, order, maxInt)
             emit(Resource.Success(currentVideoResponse))
         } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage ?: "예상치 못한 에러"))
