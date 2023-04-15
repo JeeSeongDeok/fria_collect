@@ -24,5 +24,8 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.preview)
     implementation(libs.compose.material)
+    implementation(libs.compose.lifecycle)
     implementation(libs.accompanist.pager)
+    implementation(libs.navigation)
+    implementation(libs.hilt.navigation)
 }
