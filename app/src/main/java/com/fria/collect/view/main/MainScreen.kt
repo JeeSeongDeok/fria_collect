@@ -12,6 +12,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.fria.collect.R
 import com.fria.collect.model.ui.FriaProfile
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -26,33 +27,30 @@ import kotlinx.coroutines.launch
 
 @Preview
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel = hiltViewModel()
+) {
     Column {
-        Profile(modifier = modifier)
-        ContentStateFull()
+        Profile(
+            modifier = modifier,
+            viewModel.member,
+        )
+        ContentStateFull(viewModel)
     }
-}
-
-object DataProvider {
-    val member = listOf(
-        FriaProfile("블러비", R.drawable.blove_profile),
-        FriaProfile("고여름", R.drawable.summer_profile),
-        FriaProfile("바밍", R.drawable.baming_profile),
-        FriaProfile("베베리", R.drawable.bebery_profile),
-    )
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Profile(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    member: List<FriaProfile>,
 ) {
     HorizontalPager(
-        count = DataProvider.member.size,
+        count = member.size,
         modifier = modifier
     ) { page ->
-        // Content of the pager
-        ProfileImage(member = DataProvider.member[page])
+        ProfileImage(member = member[page])
     }
 }
 
@@ -69,19 +67,20 @@ fun ProfileImage(member: FriaProfile) {
     )
 }
 
-val tabPage = listOf("유튜브", "아프리카")
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ContentStateFull() {
+fun ContentStateFull(viewModel: MainViewModel) {
     val pageState = rememberPagerState()
-    ContentTabStateLess(pageState)
-    ContentHorizontalPage(pageState)
+    ContentTabStateLess(pageState, viewModel.tabPage)
+    ContentHorizontalPage(pageState, viewModel)
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ContentTabStateLess(pagerState: PagerState) {
+fun ContentTabStateLess(
+    pagerState: PagerState,
+    tabPage: List<String>
+    ) {
     val coroutineScope = rememberCoroutineScope()
     TabRow(
         selectedTabIndex = pagerState.currentPage,
@@ -103,8 +102,10 @@ fun ContentTabStateLess(pagerState: PagerState) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ContentHorizontalPage(
-    pagerState: PagerState
+    pagerState: PagerState,
+    viewModel: MainViewModel
 ) {
+    val tabPage = viewModel.tabPage
     HorizontalPager(
         count = tabPage.size,
         state = pagerState

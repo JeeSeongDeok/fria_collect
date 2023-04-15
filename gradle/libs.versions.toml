@@ -1,14 +1,19 @@
 [versions]
-androidStudioGradlePlugin = "7.3.1"
+androidStudioGradlePlugin = "8.0.0-rc01"
 androidxComposeCompiler = "1.4.3"
 androidxComposeBom = "2023.01.00"
+retrofit = "2.9.0"
+dagger = "2.45"
 
 # AndroiX
 compose = "1.3.1"
 compose-material3 = "1.1.0-beta01"
+compose-lifecycle = "2.5.1"
 lifecycle = "2.3.1"
 activity = "1.7.0"
 coreKtx = "1.10.0-rc01"
+navigation = "2.5.3"
+hilt-navigation = "1.0.0"
 
 # 3rd-party
 accompanist = "0.23.1"
@@ -25,12 +30,24 @@ compose-activity = { module = "androidx.activity:activity-compose", version.ref 
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+compose-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "compose-lifecycle" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
-
+# navigation
+navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation" }
 
 # 3rd-party
 ## Accompanist
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+## Retrofit
+retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+## Hilt
+dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
+## test
+junit = "junit:junit:4.13.2"
+androidX-test-junit = "androidx.test.ext:junit:1.1.5"
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidStudioGradlePlugin" }
@@ -46,3 +63,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
