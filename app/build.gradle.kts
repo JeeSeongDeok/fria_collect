@@ -28,4 +28,5 @@ dependencies {
     implementation(libs.accompanist.pager)
     implementation(libs.navigation)
     implementation(libs.hilt.navigation)
+    implementation(libs.compose.coil)
 }

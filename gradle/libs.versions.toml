@@ -19,6 +19,7 @@ hilt-navigation = "1.0.0"
 accompanist = "0.23.1"
 kotlin = "1.8.10"
 ksp = "1.8.10-1.0.9"
+coil = "2.3.0"
 
 [libraries]
 # ktx
@@ -48,6 +49,8 @@ dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref
 ## test
 junit = "junit:junit:4.13.2"
 androidX-test-junit = "androidx.test.ext:junit:1.1.5"
+## coil
+compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidStudioGradlePlugin" }
