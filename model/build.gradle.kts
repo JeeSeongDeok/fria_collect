@@ -1,5 +1,5 @@
 plugins {
-    id("fria.android.application")
+    id("fria.android.library")
 }
 
 java {

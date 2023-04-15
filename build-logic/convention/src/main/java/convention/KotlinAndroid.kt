@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
  */
 
 import com.android.build.gradle.BaseExtension
-import com.fria.convention.convention.AppConfig
+
 import org.gradle.api.Action
 
 
@@ -49,7 +49,8 @@ internal fun Project.configureKotlin(
             "-Xskip-prerelease-check",
             "-Xjvm-default=all",
             // Enable experimental coroutines APIs, including Flow
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+//            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+//            "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
         )
 
         // Set JVM target

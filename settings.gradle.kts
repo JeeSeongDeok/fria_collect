@@ -1,24 +1,33 @@
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        google()
         mavenCentral()
         gradlePluginPortal()
+        google()
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
+    }
+}
+rootProject.name = "friaCollect"
+
+fun includeProject(moduleName: String, rootFolderName: String = "") {
+    settings.include(moduleName)
+
+    if (rootFolderName.isNotEmpty()) {
+        project(moduleName).projectDir =
+            File(rootDir, "${rootFolderName}/${moduleName.substring(startIndex = 1)}")
     }
 }
 
-rootProject.name = "friaCollect"
-include (":app")
-include(":data")
-include(":data:network")
-include(":model")
-include(":common")
-include(":domain")
+includeProject(":app")
+includeProject(":data")
+includeProject(":data:network")
+includeProject(":model")
+includeProject(":common")
+includeProject(":domain")

@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.fria.convention.convention.configureGradleManagedDevices
@@ -23,6 +24,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 configureKotlin(this)
 
                 buildTypes {
+                    debug {
+                        signingConfig = signingConfigs.getByName("debug")
+                        applicationIdSuffix = ".debug"
+                    }
+
                     release {
                         postprocessing {
                             isRemoveUnusedCode = true

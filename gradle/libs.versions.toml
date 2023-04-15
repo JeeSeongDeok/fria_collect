@@ -1,5 +1,5 @@
 [versions]
-androidStudioGradlePlugin = "7.3.1"
+androidStudioGradlePlugin = "8.0.0-rc01"
 androidxComposeCompiler = "1.4.3"
 androidxComposeBom = "2023.01.00"
 retrofit = "2.9.0"

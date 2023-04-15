@@ -1,10 +1,6 @@
 plugins {
-    id("fria.android.application")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    id("fria.android.library")
+    id("fria.android.hilt")
 }
 
 android {

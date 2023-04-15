@@ -1,4 +1,4 @@
-package com.fria.convention.convention
+
 
 import org.gradle.api.JavaVersion
 
@@ -9,6 +9,6 @@ object AppConfig {
     const val targetSdk = 33
     const val versionCode = 1
     const val versionName = "0.0.1"
-    val JAVA_VERSION = JavaVersion.VERSION_11
-    const val JDK_VERSION = 11
+    val JAVA_VERSION = JavaVersion.VERSION_17
+    const val JDK_VERSION = 17
 }
