@@ -2,7 +2,8 @@ package com.fria.collect.domain.data.usecase
 
 import com.fria.collect.common.Resource
 import com.fria.collect.domain.data.repository.YoutubeRepository
-import com.fria.collect.model.CurrentVideoResponse
+import com.fria.collect.model.CurrentVideo
+import com.fria.collect.model.toCurrentVideo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -17,11 +18,11 @@ class GetCurrentVideoUseCase @Inject constructor(
         channelId: String,
         order: String,
         maxInt: Int,
-    ): Flow<Resource<CurrentVideoResponse>> = flow {
+    ): Flow<Resource<CurrentVideo>> = flow {
         try {
             emit(Resource.Loading())
-            val currentVideoResponse = repository.getCurrentVideo(part, channelId, order, maxInt)
-            emit(Resource.Success(currentVideoResponse))
+            val currentVideo = repository.getCurrentVideo(part, channelId, order, maxInt).toCurrentVideo()
+            emit(Resource.Success(currentVideo))
         } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage ?: "예상치 못한 에러"))
         } catch (e: HttpException) {
