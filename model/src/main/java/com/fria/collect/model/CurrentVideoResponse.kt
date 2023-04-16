@@ -8,7 +8,7 @@ data class CurrentVideoResponse(
     val prevPageToken: String?,
     val regionCode: String?,
     val pageInfo: PageInfo,
-    val items: List<SearchResult>?
+    val items: List<SearchResult>
 )
 
 data class PageInfo(
@@ -49,3 +49,7 @@ data class Thumbnail(
     val width: Int,
     val height: Int
 )
+
+fun CurrentVideoResponse.toCurrentVideo(): CurrentVideo {
+    return CurrentVideo(items)
+}
