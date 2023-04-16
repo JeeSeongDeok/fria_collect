@@ -7,6 +7,7 @@ dagger = "2.45"
 
 # AndroiX
 compose = "1.3.1"
+compose-tool = "1.4.0"
 compose-material3 = "1.1.0-beta01"
 compose-lifecycle = "2.5.1"
 lifecycle = "2.3.1"
@@ -29,7 +30,8 @@ ktx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.r
 # compose
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-tool = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-tool" }
+compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-tool" }
 compose-material = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 compose-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "compose-lifecycle" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
