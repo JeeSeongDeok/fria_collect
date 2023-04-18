@@ -1,5 +1,6 @@
 package com.fria.collect.view.main
 
+import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,17 +10,28 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
+import com.fria.collect.R
 import com.fria.collect.model.CurrentVideo
 import com.fria.collect.model.SearchResult
 import com.fria.collect.model.ui.FriaProfile
+import com.fria.collect.ui.theme.GmarketFont
+import com.fria.collect.ui.theme.beberyPersonal
+import com.fria.collect.ui.theme.dark42
+import com.fria.collect.ui.theme.nobel
+import com.fria.collect.ui.theme.silver
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -31,17 +43,130 @@ import kotlinx.coroutines.launch
  * Figma - https://www.figma.com/file/dgSLK7Kp4hEYTCHKevNy42/Untitled?node-id=0%3A1&t=cd534yZ1J4k9YoMq-1
  */
 
+
+@Composable
+fun PreviewProfileImage() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.8f)
+            .background(color = Color.Black)
+    ) {
+        Image(
+            painter = painterResource(R.drawable.bebery_profile),
+            contentDescription = "Profile",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .alpha(.5f)
+        )
+        ProfileMemberInfo(
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(20.dp),
+            "ENTJ",
+            "MBTI"
+        )
+        ProfileMemberInfo(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(20.dp),
+            "프리아",
+            "소속"
+        )
+        ProfileMemberInfo(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(20.dp),
+            "혈액형",
+            "O형"
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewCardView() {
+    Card(
+        shape = RoundedCornerShape(
+            topStart = 30.dp,
+            topEnd = 30.dp,
+            bottomStart = 0.dp,
+            bottomEnd = 0.dp,
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = silver
+        ),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(30.dp)
+        ) {
+            Text(
+                text = "베베리",
+                fontFamily = GmarketFont,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                fontSize = 20.sp
+            )
+            Text(
+                text = "99.10.10",
+                color = nobel
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = beberyPersonal
+                    ),
+                    onClick = { /*TODO*/ }
+                ) {
+                    Text(
+                        text = "Youtube",
+                        color = Color.White
+                    )
+                }
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = beberyPersonal
+                    ),
+                    onClick = { /*TODO*/ }
+                ) {
+                    Text(
+                        text = "Afreeca TV",
+                        color = Color.White
+                    )
+                }
+            }
+        }
+    }
+}
+
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    Column {
+    Box {
         Profile(
-            modifier = modifier,
+            modifier = modifier
+                .fillMaxWidth()
+                .fillMaxHeight(.9f)
+                .align(Alignment.TopStart),
             viewModel,
         )
-        ContentStateFull(viewModel)
+        CardView(
+            modifier = modifier
+                .fillMaxWidth()
+                .fillMaxHeight(.25f)
+                .align(Alignment.BottomStart)
+        )
     }
 }
 
@@ -67,65 +192,129 @@ fun Profile(
 
 @Composable
 fun ProfileImage(member: FriaProfile) {
-    Image(
-        painter = painterResource(member.image),
-        contentDescription = "Profile",
-        contentScale = ContentScale.Crop,
+    Box(
         modifier = Modifier
-            .size(200.dp)
-            .clip(CircleShape)
-            .border(2.dp, Color.Gray, CircleShape)
-    )
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun ContentStateFull(viewModel: MainViewModel) {
-    val pageState = rememberPagerState()
-    ContentTabStateLess(pageState, viewModel.tabPage)
-    ContentHorizontalPage(pageState, viewModel)
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun ContentTabStateLess(
-    pagerState: PagerState,
-    tabPage: List<String>
-) {
-    val coroutineScope = rememberCoroutineScope()
-    TabRow(
-        selectedTabIndex = pagerState.currentPage,
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(color = Color.Black)
     ) {
-        tabPage.forEachIndexed { index, title ->
-            Tab(
-                text = { Text(text = title) },
-                selected = index == pagerState.currentPage,
-                onClick = {
-                    coroutineScope.launch {
-                        pagerState.scrollToPage(index)
-                    }
-                }
-            )
-        }
+        Image(
+            painter = painterResource(member.image),
+            contentDescription = "Profile",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .alpha(.5f)
+        )
+        ProfileMemberInfo(
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .fillMaxHeight(.3f)
+                .padding(20.dp),
+            "ENTJ",
+            "MBTI"
+        )
+        ProfileMemberInfo(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxHeight(.3f)
+                .padding(20.dp),
+            "프리아",
+            "소속"
+        )
+        ProfileMemberInfo(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .fillMaxHeight(.3f)
+                .padding(20.dp),
+            "혈액형",
+            "O형"
+        )
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ContentHorizontalPage(
-    pagerState: PagerState,
-    viewModel: MainViewModel
+fun ProfileMemberInfo(
+    modifier: Modifier,
+    title: String,
+    description: String
 ) {
-    val tabPage = viewModel.tabPage
-    HorizontalPager(
-        count = tabPage.size,
-        state = pagerState
-    ) { _ ->
-        LaunchedEffect(viewModel.memberIndexState.value) {
-            viewModel.getCurrentVideo(viewModel.memberIndexState.value)
-        }
-        viewModel.currentVideoState.value.videoList?.let { currentVideos ->
-            YoutubeLazyColumn(currentVideos = currentVideos)
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = description,
+            color = Color.White
+        )
+        Text(
+            text = title,
+            color = nobel
+        )
+    }
+}
+
+
+@Composable
+fun CardView(modifier: Modifier) {
+    Card(
+        shape = RoundedCornerShape(
+            topStart = 30.dp,
+            topEnd = 30.dp,
+            bottomStart = 0.dp,
+            bottomEnd = 0.dp,
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = silver
+        ),
+        modifier = modifier
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(30.dp)
+        ) {
+            Text(
+                text = "베베리",
+                fontFamily = GmarketFont,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                fontSize = 20.sp
+            )
+            Text(
+                text = "99.10.10",
+                color = nobel
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = beberyPersonal
+                    ),
+                    onClick = { /*TODO*/ }
+                ) {
+                    Text(
+                        text = "Youtube",
+                        color = Color.White
+                    )
+                }
+                Spacer(modifier = Modifier.padding(16.dp))
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = beberyPersonal
+                    ),
+                    onClick = { /*TODO*/ }
+                ) {
+                    Text(
+                        text = "Afreeca TV",
+                        color = Color.White
+                    )
+                }
+            }
         }
     }
 }
