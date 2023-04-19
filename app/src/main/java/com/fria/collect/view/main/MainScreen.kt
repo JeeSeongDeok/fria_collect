@@ -1,21 +1,17 @@
 package com.fria.collect.view.main
 
-import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
+import com.google.accompanist.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,15 +25,11 @@ import com.fria.collect.model.SearchResult
 import com.fria.collect.model.ui.FriaProfile
 import com.fria.collect.ui.theme.GmarketFont
 import com.fria.collect.ui.theme.beberyPersonal
-import com.fria.collect.ui.theme.dark42
 import com.fria.collect.ui.theme.nobel
 import com.fria.collect.ui.theme.silver
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
-import kotlinx.coroutines.flow.collectIndexed
-import kotlinx.coroutines.launch
 
 /**
  * Figma - https://www.figma.com/file/dgSLK7Kp4hEYTCHKevNy42/Untitled?node-id=0%3A1&t=cd534yZ1J4k9YoMq-1
@@ -148,11 +140,14 @@ fun PreviewCardView() {
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
     viewModel: MainViewModel = hiltViewModel()
 ) {
+    val profilePageState = rememberPagerState()
+    var cardHeight by remember { mutableStateOf(.25f) }
     Box {
         Profile(
             modifier = modifier
@@ -160,12 +155,15 @@ fun MainScreen(
                 .fillMaxHeight(.9f)
                 .align(Alignment.TopStart),
             viewModel,
+            profilePageState,
         )
-        CardView(
+        BottomCardView(
             modifier = modifier
                 .fillMaxWidth()
-                .fillMaxHeight(.25f)
-                .align(Alignment.BottomStart)
+                .fillMaxHeight(cardHeight)
+                .align(Alignment.BottomStart),
+            viewModel,
+            profilePageState
         )
     }
 }
@@ -175,11 +173,13 @@ fun MainScreen(
 fun Profile(
     modifier: Modifier = Modifier,
     viewModel: MainViewModel,
+    profilePageState: PagerState,
 ) {
     val member = viewModel.member
     HorizontalPager(
         count = member.size,
         modifier = modifier,
+        state = profilePageState,
     ) { page ->
         LaunchedEffect(page) {
             snapshotFlow { currentPage }.collect {
@@ -212,8 +212,8 @@ fun ProfileImage(member: FriaProfile) {
                 .align(Alignment.BottomStart)
                 .fillMaxHeight(.3f)
                 .padding(20.dp),
-            "ENTJ",
-            "MBTI"
+            "MBTI",
+            member.mbti
         )
         ProfileMemberInfo(
             modifier = Modifier
@@ -229,7 +229,7 @@ fun ProfileImage(member: FriaProfile) {
                 .fillMaxHeight(.3f)
                 .padding(20.dp),
             "혈액형",
-            "O형"
+            member.bloodType
         )
     }
 }
@@ -256,8 +256,14 @@ fun ProfileMemberInfo(
 }
 
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun CardView(modifier: Modifier) {
+fun BottomCardView(
+    modifier: Modifier,
+    viewModel: MainViewModel,
+    profilePageState: PagerState
+) {
+    val member = viewModel.member[profilePageState.currentPage]
     Card(
         shape = RoundedCornerShape(
             topStart = 30.dp,
@@ -275,35 +281,39 @@ fun CardView(modifier: Modifier) {
                 .padding(30.dp)
         ) {
             Text(
-                text = "베베리",
+                text = member.name,
                 fontFamily = GmarketFont,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 fontSize = 20.sp
             )
             Text(
-                text = "99.10.10",
+                text = member.birthDay,
                 color = nobel
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceAround
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
+                    modifier = Modifier
+                        .weight(1f),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = beberyPersonal
                     ),
-                    onClick = { /*TODO*/ }
+                    onClick = { viewModel.setCardHeight(.5f) }
                 ) {
                     Text(
                         text = "Youtube",
                         color = Color.White
                     )
                 }
-                Spacer(modifier = Modifier.padding(16.dp))
+                Spacer(modifier = Modifier.width(16.dp))
                 Button(
+                    modifier = Modifier
+                        .weight(1f),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = beberyPersonal
                     ),
