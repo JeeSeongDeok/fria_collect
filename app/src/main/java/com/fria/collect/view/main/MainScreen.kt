@@ -147,7 +147,6 @@ fun MainScreen(
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val profilePageState = rememberPagerState()
-    var cardHeight by remember { mutableStateOf(.25f) }
     Box {
         Profile(
             modifier = modifier
@@ -160,7 +159,7 @@ fun MainScreen(
         BottomCardView(
             modifier = modifier
                 .fillMaxWidth()
-                .fillMaxHeight(cardHeight)
+                .fillMaxHeight(viewModel.cardHeight.value)
                 .align(Alignment.BottomStart),
             viewModel,
             profilePageState
