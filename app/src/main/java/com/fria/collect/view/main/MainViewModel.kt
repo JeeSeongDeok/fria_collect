@@ -30,14 +30,10 @@ class MainViewModel @Inject constructor(
         FriaProfile("블러비", R.drawable.blove_profile, KEY_BLOVE, "B형", "02.11.26", "ISTP"),
         FriaProfile("고여름", R.drawable.summer_profile, KEY_SUMMER, "O형", "01.08.08", "ENFP"),
         FriaProfile("바밍", R.drawable.baming_profile, KEY_BAMING, "AB형", "00.02.22", "INTP"),
-        FriaProfile("베베리", R.drawable.bebery_profile, KEY_BEBERY, "ENTJ", "99.10.10", "ENTJ"),
+        FriaProfile("베베리", R.drawable.bebery_profile, KEY_BEBERY, "O형", "99.10.10", "ENTJ"),
     )
     val member: List<FriaProfile>
         get() = _member
-
-    private val _tabPage = listOf("유튜브", "아프리카")
-    val tabPage: List<String>
-        get() = _tabPage
 
     private val _currentVideoState = mutableStateOf(CurrentVideoState())
     val currentVideoState = _currentVideoState
@@ -53,6 +49,10 @@ class MainViewModel @Inject constructor(
     fun setCardHeight(value: Float) {
         _cardHeight.value = value
     }
+
+    private var _isYoutubeClick = mutableStateOf(false)
+    val isYoutubeClick
+        get() = _isYoutubeClick
 
     fun getCurrentVideo(memberIndex: Int) {
         getCurrentVideoUseCase(

@@ -263,6 +263,7 @@ fun BottomCardView(
     profilePageState: PagerState
 ) {
     val member = viewModel.member[profilePageState.currentPage]
+    val isClick = viewModel.isYoutubeClick
     Card(
         shape = RoundedCornerShape(
             topStart = 30.dp,
@@ -302,7 +303,11 @@ fun BottomCardView(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = beberyPersonal
                     ),
-                    onClick = { viewModel.setCardHeight(.5f) }
+                    onClick = {
+                        viewModel.setCardHeight(.5f)
+                        isClick.value = true
+                        viewModel.getCurrentVideo(viewModel.memberIndexState.value)
+                    }
                 ) {
                     Text(
                         text = "Youtube",
@@ -322,6 +327,11 @@ fun BottomCardView(
                         text = "Afreeca TV",
                         color = Color.White
                     )
+                }
+            }
+            if (viewModel.isYoutubeClick.value) {
+                viewModel.currentVideoState.value.videoList?.let { currentVideos ->
+                    YoutubeLazyColumn(currentVideos = currentVideos)
                 }
             }
         }
