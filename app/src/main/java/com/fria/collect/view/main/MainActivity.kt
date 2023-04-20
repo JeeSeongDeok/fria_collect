@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setImmersiveMode()
         setContent {
             FriaCollectTheme {
                 Surface(
@@ -32,5 +33,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun setImmersiveMode() {
+        window.decorView.windowInsetsController!!.hide(
+            android.view.WindowInsets.Type.statusBars()
+        )
     }
 }
