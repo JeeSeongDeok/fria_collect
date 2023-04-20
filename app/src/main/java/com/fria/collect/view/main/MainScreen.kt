@@ -301,7 +301,7 @@ fun BottomCardView(
                     modifier = Modifier
                         .weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = beberyPersonal
+                        containerColor = member.personalColor
                     ),
                     onClick = {
                         viewModel.setCardHeight(.5f)
@@ -319,7 +319,7 @@ fun BottomCardView(
                     modifier = Modifier
                         .weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = beberyPersonal
+                        containerColor = member.personalColor
                     ),
                     onClick = { /*TODO*/ }
                 ) {
