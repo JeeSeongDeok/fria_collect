@@ -58,29 +58,51 @@ fun PreviewProfileImage() {
                 .fillMaxHeight()
                 .alpha(.5f)
         )
-        ProfileMemberInfo(
+        PreviewProfileMemberInfo(
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(20.dp),
             "ENTJ",
-            "MBTI"
+            "MBTI",
         )
-        ProfileMemberInfo(
+        PreviewProfileMemberInfo(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(20.dp),
             "프리아",
-            "소속"
+            "소속",
         )
-        ProfileMemberInfo(
+        PreviewProfileMemberInfo(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(20.dp),
             "혈액형",
-            "O형"
+            "O형",
         )
     }
 }
+
+@Composable
+fun PreviewProfileMemberInfo(
+    modifier: Modifier,
+    title: String,
+    description: String,
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = description,
+            color = Color.White
+        )
+        Text(
+            text = title,
+            color = nobel
+        )
+    }
+}
+
 
 @Preview
 @Composable
