@@ -31,10 +31,42 @@ class MainViewModel @Inject constructor(
     private val getCurrentVideoUseCase: GetCurrentVideoUseCase
 ) : ViewModel() {
     private val _member = listOf(
-        FriaProfile("블러비", R.drawable.blove_profile, KEY_BLOVE, "B형", "02.11.26", "ISTP", blovePersonal),
-        FriaProfile("고여름", R.drawable.summer_profile, KEY_SUMMER, "O형", "01.08.08", "ENFP", summerPersonal),
-        FriaProfile("바밍", R.drawable.baming_profile, KEY_BAMING, "AB형", "00.02.22", "INTP", bamingPersonal),
-        FriaProfile("베베리", R.drawable.bebery_profile, KEY_BEBERY, "O형", "99.10.10", "ENTJ", beberyPersonal),
+        FriaProfile(
+            "블러비",
+            R.drawable.blove_profile,
+            KEY_BLOVE,
+            "B형",
+            "02.11.26",
+            "ISTP",
+            blovePersonal
+        ),
+        FriaProfile(
+            "고여름",
+            R.drawable.summer_profile,
+            KEY_SUMMER,
+            "O형",
+            "01.08.08",
+            "ENFP",
+            summerPersonal
+        ),
+        FriaProfile(
+            "바밍",
+            R.drawable.baming_profile,
+            KEY_BAMING,
+            "AB형",
+            "00.02.22",
+            "INTP",
+            bamingPersonal
+        ),
+        FriaProfile(
+            "베베리",
+            R.drawable.bebery_profile,
+            KEY_BEBERY,
+            "O형",
+            "99.10.10",
+            "ENTJ",
+            beberyPersonal
+        ),
     )
     val member: List<FriaProfile>
         get() = _member
@@ -42,21 +74,28 @@ class MainViewModel @Inject constructor(
     private val _currentVideoState = mutableStateOf(CurrentVideoState())
     val currentVideoState = _currentVideoState
 
-    private val _memberIndexState = mutableStateOf(0)
-    val memberIndexState
-        get() = _memberIndexState
+    var memberIndexStateVariable
+            by mutableStateOf(savedStateHandle["memberIndex"] ?: 0)
+        private set
 
-    private var _cardHeight = mutableStateOf(.25f)
-    val cardHeight
-        get() = _cardHeight
+    var bottomCardClick
+            by mutableStateOf(savedStateHandle["bottomCardClick"] ?: "NONE")
+        private set
 
-    fun setCardHeight(value: Float) {
-        _cardHeight.value = value
+    fun memberIndexChange(index: Int) {
+        memberIndexStateVariable = index
     }
 
-    private var _isYoutubeClick = mutableStateOf(false)
-    val isYoutubeClick
-        get() = _isYoutubeClick
+    fun bottomCardClick(value: String) {
+        bottomCardClick = value
+    }
+
+    fun bottomCardViewHeight(): Float {
+        return if (bottomCardClick == "NONE")
+            .25f
+        else
+            .5f
+    }
 
     fun getCurrentVideo(memberIndex: Int) {
         getCurrentVideoUseCase(

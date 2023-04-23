@@ -40,7 +40,7 @@ fun ProfilePager(
     ) { page ->
         LaunchedEffect(page) {
             snapshotFlow { currentPage }.collect {
-                viewModel.memberIndexState.value = currentPage
+                viewModel.memberIndexChange(currentPage)
             }
         }
         ProfileImage(member = member[page])

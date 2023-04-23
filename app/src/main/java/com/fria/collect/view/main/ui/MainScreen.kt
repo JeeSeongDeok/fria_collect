@@ -36,11 +36,10 @@ fun MainScreen(
         BottomCardView(
             modifier = modifier
                 .fillMaxWidth()
-                .fillMaxHeight(viewModel.cardHeight.value)
+                .fillMaxHeight(viewModel.bottomCardViewHeight())
                 .align(Alignment.BottomStart),
             viewModel,
             profilePageState
         )
     }
 }
-
