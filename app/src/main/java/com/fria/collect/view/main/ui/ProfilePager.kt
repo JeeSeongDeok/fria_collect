@@ -1,5 +1,10 @@
 package com.fria.collect.view.main.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -43,12 +48,13 @@ fun ProfilePager(
                 viewModel.memberIndexChange(currentPage)
             }
         }
-        ProfileImage(member = member[page])
+        ProfileImage(member = member[page], profilePageState)
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ProfileImage(member: FriaProfile) {
+fun ProfileImage(member: FriaProfile, profilePageState: PagerState) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -70,7 +76,8 @@ fun ProfileImage(member: FriaProfile) {
                 .fillMaxHeight(.3f)
                 .padding(20.dp),
             "MBTI",
-            member.mbti
+            member.mbti,
+            profilePageState
         )
         ProfileMemberInfo(
             modifier = Modifier
@@ -78,7 +85,8 @@ fun ProfileImage(member: FriaProfile) {
                 .fillMaxHeight(.3f)
                 .padding(20.dp),
             "프리아",
-            "소속"
+            "소속",
+            profilePageState
         )
         ProfileMemberInfo(
             modifier = Modifier
@@ -86,28 +94,43 @@ fun ProfileImage(member: FriaProfile) {
                 .fillMaxHeight(.3f)
                 .padding(20.dp),
             "혈액형",
-            member.bloodType
+            member.bloodType,
+            profilePageState
         )
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ProfileMemberInfo(
     modifier: Modifier,
     title: String,
-    description: String
+    description: String,
+    profilePageState: PagerState
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = description,
-            color = Color.White
-        )
-        Text(
-            text = title,
-            color = nobel
-        )
+        AnimatedVisibility(
+            enter = slideInVertically() + fadeIn(),
+            exit = slideOutVertically() + fadeOut(),
+            visible = !profilePageState.isScrollInProgress,
+        ) {
+            Text(
+                text = description,
+                color = Color.White
+            )
+        }
+        AnimatedVisibility(
+            enter = slideInVertically() + fadeIn(),
+            exit = slideOutVertically() + fadeOut(),
+            visible = !profilePageState.isScrollInProgress,
+        ) {
+            Text(
+                text = title,
+                color = nobel
+            )
+        }
     }
 }
