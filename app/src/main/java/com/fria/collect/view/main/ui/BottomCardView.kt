@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
@@ -112,7 +113,7 @@ fun BottomCardView(
             }
             if (viewModel.bottomCardClick == "YOUTUBE") {
                 viewModel.currentVideoState.value.videoList?.let { currentVideos ->
-                    YoutubeLazyColumn(currentVideos = currentVideos)
+                    YoutubeLazyColumn(currentVideos = currentVideos, viewModel)
                 }
             }
         }
@@ -120,28 +121,32 @@ fun BottomCardView(
 }
 
 @Composable
-fun YoutubeLazyColumn(currentVideos: CurrentVideo) {
+fun YoutubeLazyColumn(currentVideos: CurrentVideo, viewModel: MainViewModel) {
     LazyColumn(
         modifier = Modifier
-            .padding(16.dp)
     ) {
         items(currentVideos.items.size) { index ->
-            VideoCard(currentVideos.items[index])
+            VideoCard(currentVideos.items[index], viewModel)
         }
     }
 }
 
 @Composable
-fun VideoCard(get: SearchResult) {
+fun VideoCard(currentVideo: SearchResult, viewModel: MainViewModel) {
     Card(
+        colors = CardDefaults.cardColors(
+            containerColor = viewModel.member[viewModel.memberIndexStateVariable].personalColor,
+        ),
         shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(0.dp, 0.dp, 0.dp, 10.dp)
     ) {
-        val item = get.snippet
+        val item = currentVideo.snippet
         Box(
             modifier = Modifier
                 .height(100.dp)
-                .padding(16.dp),
+                .padding(10.dp),
         ) {
             Image(
                 painter = rememberAsyncImagePainter(item.thumbnails.default.url),
@@ -149,21 +154,21 @@ fun VideoCard(get: SearchResult) {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(item.thumbnails.default.width.dp)
-                    .border(2.dp, Color.Gray)
+                    .border(2.dp, Color.White)
                     .align(Alignment.CenterStart)
             )
             Column(
                 modifier = Modifier
                     .padding(start = (item.thumbnails.default.width + 16).dp)
                     .fillMaxWidth()
+                    .align(Alignment.Center)
             ) {
                 Text(
                     text = item.title,
                     style = MaterialTheme.typography.bodyLarge,
-                )
-                Text(
-                    text = item.description,
-                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.White,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         }
