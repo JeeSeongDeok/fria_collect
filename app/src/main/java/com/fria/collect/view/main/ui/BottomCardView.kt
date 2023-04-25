@@ -1,5 +1,10 @@
 package com.fria.collect.view.main.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -63,52 +68,76 @@ fun BottomCardView(
             modifier = Modifier
                 .padding(30.dp)
         ) {
-            Text(
-                text = member.name,
-                fontFamily = GmarketFont,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontSize = 20.sp
-            )
-            Text(
-                text = member.birthDay,
-                color = nobel
-            )
+            AnimatedVisibility(
+                enter = slideInVertically() + fadeIn(),
+                exit = slideOutVertically() + fadeOut(),
+                visible = !profilePageState.isScrollInProgress,
+            ) {
+                Text(
+                    text = member.name,
+                    fontFamily = GmarketFont,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    fontSize = 20.sp
+                )
+            }
+            AnimatedVisibility(
+                enter = slideInVertically() + fadeIn(),
+                exit = slideOutVertically() + fadeOut(),
+                visible = !profilePageState.isScrollInProgress,
+            ) {
+                Text(
+                    text = member.birthDay,
+                    color = nobel
+                )
+            }
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(
-                    modifier = Modifier
-                        .weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = member.personalColor
-                    ),
-                    onClick = {
-                        viewModel.bottomCardClick("YOUTUBE")
-                        viewModel.getCurrentVideo(viewModel.memberIndexStateVariable)
-                    }
+                AnimatedVisibility(
+                    enter = slideInVertically() + fadeIn(),
+                    exit = slideOutVertically() + fadeOut(),
+                    visible = !profilePageState.isScrollInProgress,
                 ) {
-                    Text(
-                        text = "Youtube",
-                        color = Color.White
-                    )
+                    Button(
+                        modifier = Modifier
+                            .weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = member.personalColor
+                        ),
+                        onClick = {
+                            viewModel.bottomCardClick("YOUTUBE")
+                            viewModel.getCurrentVideo(viewModel.memberIndexStateVariable)
+                        }
+                    ) {
+                        Text(
+                            text = "Youtube",
+                            color = Color.White
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Button(
-                    modifier = Modifier
-                        .weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = member.personalColor
-                    ),
-                    onClick = { /*TODO*/ }
+                AnimatedVisibility(
+                    enter = slideInVertically() + fadeIn(),
+                    exit = slideOutVertically() + fadeOut(),
+                    visible = !profilePageState.isScrollInProgress,
                 ) {
-                    Text(
-                        text = "Afreeca TV",
-                        color = Color.White
-                    )
+                    Button(
+                        modifier = Modifier
+                            .weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = member.personalColor
+                        ),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Text(
+                            text = "Afreeca TV",
+                            color = Color.White
+                        )
+                    }
                 }
             }
             if (viewModel.bottomCardClick == "YOUTUBE") {
