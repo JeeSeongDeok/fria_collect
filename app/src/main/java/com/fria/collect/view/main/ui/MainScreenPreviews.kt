@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -191,9 +190,8 @@ fun PreviewCurrentVideo() {
             .fillMaxWidth()
             .padding(0.dp, 0.dp, 0.dp, 10.dp)
     ) {
-        Box(
+        Column(
             modifier = Modifier
-                .height(100.dp)
                 .padding(10.dp),
         ) {
             Image(
@@ -201,24 +199,18 @@ fun PreviewCurrentVideo() {
                 contentDescription = "Current Video",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(120.dp)
-                    .border(2.dp, Color.White)
-                    .align(Alignment.CenterStart)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = (120 + 16).dp)
                     .fillMaxWidth()
-                    .align(Alignment.Center)
-            ) {
-                Text(
-                    text = "Title",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+                    .height(180.dp)
+                    .border(2.dp, Color.White)
+            )
+            Text(
+                text = "Title",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
+
         }
     }
 }
