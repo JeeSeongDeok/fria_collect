@@ -85,8 +85,8 @@ fun ProfileImage(member: FriaProfile, profilePageState: PagerState) {
                 .align(Alignment.BottomCenter)
                 .fillMaxHeight(.3f)
                 .padding(20.dp),
-            "프리아",
             "소속",
+            "프리아",
             profilePageState
         )
         ProfileMemberInfo(
