@@ -158,7 +158,10 @@ fun YoutubeLazyColumn(currentVideos: CurrentVideo, viewModel: MainViewModel) {
 }
 
 @Composable
-fun VideoCard(currentVideo: SearchResult, viewModel: MainViewModel) {
+fun VideoCard(
+    currentVideo: SearchResult,
+    viewModel: MainViewModel,
+) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = viewModel.member[viewModel.memberIndexStateVariable].personalColor,
