@@ -46,6 +46,7 @@ fun ProfilePager(
         LaunchedEffect(page) {
             snapshotFlow { currentPage }.collect {
                 viewModel.memberIndexChange(currentPage)
+                viewModel.bottomCardClick("NONE")
             }
         }
         ProfileImage(member = member[page], profilePageState)

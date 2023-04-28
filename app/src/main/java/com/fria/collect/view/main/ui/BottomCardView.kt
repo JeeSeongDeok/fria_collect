@@ -106,8 +106,12 @@ fun BottomCardView(
                             containerColor = member.personalColor
                         ),
                         onClick = {
-                            viewModel.bottomCardClick("YOUTUBE")
-                            viewModel.getCurrentVideo(viewModel.memberIndexStateVariable)
+                            if (viewModel.bottomCardClick == "YOUTUBE") {
+                                viewModel.bottomCardClick("NONE")
+                            } else {
+                                viewModel.bottomCardClick("YOUTUBE")
+                                viewModel.getCurrentVideo(viewModel.memberIndexStateVariable)
+                            }
                         }
                     ) {
                         Text(
