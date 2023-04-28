@@ -14,9 +14,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 /**
  * Figma - https://www.figma.com/file/dgSLK7Kp4hEYTCHKevNy42/Untitled?node-id=0%3A1&t=cd534yZ1J4k9YoMq-1
  */
-
-
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen(

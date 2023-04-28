@@ -1,16 +1,19 @@
 package com.fria.collect.view.main.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +24,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -63,52 +65,80 @@ fun BottomCardView(
             modifier = Modifier
                 .padding(30.dp)
         ) {
-            Text(
-                text = member.name,
-                fontFamily = GmarketFont,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontSize = 20.sp
-            )
-            Text(
-                text = member.birthDay,
-                color = nobel
-            )
+            AnimatedVisibility(
+                enter = slideInVertically() + fadeIn(),
+                exit = slideOutVertically() + fadeOut(),
+                visible = !profilePageState.isScrollInProgress,
+            ) {
+                Text(
+                    text = member.name,
+                    fontFamily = GmarketFont,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    fontSize = 20.sp
+                )
+            }
+            AnimatedVisibility(
+                enter = slideInVertically() + fadeIn(),
+                exit = slideOutVertically() + fadeOut(),
+                visible = !profilePageState.isScrollInProgress,
+            ) {
+                Text(
+                    text = member.birthDay,
+                    color = nobel
+                )
+            }
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(
-                    modifier = Modifier
-                        .weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = member.personalColor
-                    ),
-                    onClick = {
-                        viewModel.bottomCardClick("YOUTUBE")
-                        viewModel.getCurrentVideo(viewModel.memberIndexStateVariable)
-                    }
+                AnimatedVisibility(
+                    enter = slideInVertically() + fadeIn(),
+                    exit = slideOutVertically() + fadeOut(),
+                    visible = !profilePageState.isScrollInProgress,
                 ) {
-                    Text(
-                        text = "Youtube",
-                        color = Color.White
-                    )
+                    Button(
+                        modifier = Modifier
+                            .weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = member.personalColor
+                        ),
+                        onClick = {
+                            if (viewModel.bottomCardClick == "YOUTUBE") {
+                                viewModel.bottomCardClick("NONE")
+                            } else {
+                                viewModel.bottomCardClick("YOUTUBE")
+                                viewModel.getCurrentVideo(viewModel.memberIndexStateVariable)
+                            }
+                        }
+                    ) {
+                        Text(
+                            text = "Youtube",
+                            color = Color.White
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Button(
-                    modifier = Modifier
-                        .weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = member.personalColor
-                    ),
-                    onClick = { /*TODO*/ }
+                AnimatedVisibility(
+                    enter = slideInVertically() + fadeIn(),
+                    exit = slideOutVertically() + fadeOut(),
+                    visible = !profilePageState.isScrollInProgress,
                 ) {
-                    Text(
-                        text = "Afreeca TV",
-                        color = Color.White
-                    )
+                    Button(
+                        modifier = Modifier
+                            .weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = member.personalColor
+                        ),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Text(
+                            text = "Afreeca TV",
+                            color = Color.White
+                        )
+                    }
                 }
             }
             if (viewModel.bottomCardClick == "YOUTUBE") {
@@ -132,7 +162,10 @@ fun YoutubeLazyColumn(currentVideos: CurrentVideo, viewModel: MainViewModel) {
 }
 
 @Composable
-fun VideoCard(currentVideo: SearchResult, viewModel: MainViewModel) {
+fun VideoCard(
+    currentVideo: SearchResult,
+    viewModel: MainViewModel,
+) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = viewModel.member[viewModel.memberIndexStateVariable].personalColor,
@@ -143,34 +176,26 @@ fun VideoCard(currentVideo: SearchResult, viewModel: MainViewModel) {
             .padding(0.dp, 0.dp, 0.dp, 10.dp)
     ) {
         val item = currentVideo.snippet
-        Box(
+        Column(
             modifier = Modifier
-                .height(100.dp)
                 .padding(10.dp),
         ) {
             Image(
-                painter = rememberAsyncImagePainter(item.thumbnails.default.url),
+                painter = rememberAsyncImagePainter(item.thumbnails.medium.url),
                 contentDescription = "Current Video",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(item.thumbnails.default.width.dp)
-                    .border(2.dp, Color.White)
-                    .align(Alignment.CenterStart)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = (item.thumbnails.default.width + 16).dp)
                     .fillMaxWidth()
-                    .align(Alignment.Center)
-            ) {
-                Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+                    .height(item.thumbnails.medium.height.dp)
+                    .border(2.dp, Color.White)
+            )
+            Text(
+                text = item.title,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
         }
     }
 }

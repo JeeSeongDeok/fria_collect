@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -58,29 +57,51 @@ fun PreviewProfileImage() {
                 .fillMaxHeight()
                 .alpha(.5f)
         )
-        ProfileMemberInfo(
+        PreviewProfileMemberInfo(
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(20.dp),
             "ENTJ",
-            "MBTI"
+            "MBTI",
         )
-        ProfileMemberInfo(
+        PreviewProfileMemberInfo(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(20.dp),
             "프리아",
-            "소속"
+            "소속",
         )
-        ProfileMemberInfo(
+        PreviewProfileMemberInfo(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(20.dp),
             "혈액형",
-            "O형"
+            "O형",
         )
     }
 }
+
+@Composable
+fun PreviewProfileMemberInfo(
+    modifier: Modifier,
+    title: String,
+    description: String,
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = description,
+            color = Color.White
+        )
+        Text(
+            text = title,
+            color = nobel
+        )
+    }
+}
+
 
 @Preview
 @Composable
@@ -169,9 +190,8 @@ fun PreviewCurrentVideo() {
             .fillMaxWidth()
             .padding(0.dp, 0.dp, 0.dp, 10.dp)
     ) {
-        Box(
+        Column(
             modifier = Modifier
-                .height(100.dp)
                 .padding(10.dp),
         ) {
             Image(
@@ -179,24 +199,18 @@ fun PreviewCurrentVideo() {
                 contentDescription = "Current Video",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(120.dp)
-                    .border(2.dp, Color.White)
-                    .align(Alignment.CenterStart)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = (120 + 16).dp)
                     .fillMaxWidth()
-                    .align(Alignment.Center)
-            ) {
-                Text(
-                    text = "Title",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+                    .height(180.dp)
+                    .border(2.dp, Color.White)
+            )
+            Text(
+                text = "Title",
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
+
         }
     }
 }
