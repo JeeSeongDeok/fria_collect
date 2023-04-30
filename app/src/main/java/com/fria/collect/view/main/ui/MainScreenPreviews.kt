@@ -7,10 +7,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -116,51 +119,65 @@ fun PreviewCardView() {
         colors = CardDefaults.cardColors(
             containerColor = silver
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
     ) {
-        Column(
-            modifier = Modifier
-                .padding(30.dp)
-        ) {
-            Text(
-                text = "베베리",
-                fontFamily = GmarketFont,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontSize = 20.sp
-            )
-            Text(
-                text = "99.10.10",
-                color = nobel
-            )
-            Row(
+        Row {
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceAround
+                    .padding(20.dp, 20.dp, 0.dp, 0.dp)
+                    .align(Alignment.Top)
             ) {
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = beberyPersonal
-                    ),
-                    onClick = { /*TODO*/ }
-                ) {
-                    Text(
-                        text = "Youtube",
-                        color = Color.White
-                    )
-                }
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = beberyPersonal
-                    ),
-                    onClick = { /*TODO*/ }
-                ) {
-                    Text(
-                        text = "Afreeca TV",
-                        color = Color.White
-                    )
-                }
+                Text(
+                    text = "베베리",
+                    fontFamily = GmarketFont,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = "99.10.10",
+                    color = nobel
+                )
+            }
+            Spacer(Modifier.weight(.8f))
+            Image(
+                painter = painterResource(R.drawable.bebery_icon),
+                contentDescription = "Profile",
+                modifier = Modifier
+                    .size(70.dp)
+                    .align(Alignment.Top)
+                    .padding(10.dp)
+            )
+            Spacer(modifier = Modifier.width(10.dp))
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = beberyPersonal
+                ),
+                onClick = { /*TODO*/ }
+            ) {
+                Text(
+                    text = "Youtube",
+                    color = Color.White
+                )
+            }
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = beberyPersonal
+                ),
+                onClick = { /*TODO*/ }
+            ) {
+                Text(
+                    text = "Afreeca TV",
+                    color = Color.White
+                )
             }
         }
     }

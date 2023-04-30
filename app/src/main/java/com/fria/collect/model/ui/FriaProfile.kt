@@ -10,4 +10,5 @@ data class FriaProfile(
     val birthDay: String,
     val mbti: String,
     val personalColor: Color,
+    val icon: Int,
 )

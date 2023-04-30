@@ -32,12 +32,13 @@ class MainViewModel @Inject constructor(
     private val _member = listOf(
         FriaProfile(
             "블러비",
-            R.drawable.blove_profile,
+            R.drawable.blovey_profile,
             KEY_BLOVE,
             "B형",
             "02.11.26",
             "ISTP",
-            blovePersonal
+            blovePersonal,
+            R.drawable.blovey_icon,
         ),
         FriaProfile(
             "고여름",
@@ -46,7 +47,8 @@ class MainViewModel @Inject constructor(
             "O형",
             "01.08.08",
             "ENFP",
-            summerPersonal
+            summerPersonal,
+            R.drawable.summer_icon,
         ),
         FriaProfile(
             "바밍",
@@ -55,7 +57,8 @@ class MainViewModel @Inject constructor(
             "AB형",
             "00.02.22",
             "INTP",
-            bamingPersonal
+            bamingPersonal,
+            R.drawable.baming_icon,
         ),
         FriaProfile(
             "베베리",
@@ -64,7 +67,8 @@ class MainViewModel @Inject constructor(
             "O형",
             "99.10.10",
             "ENTJ",
-            beberyPersonal
+            beberyPersonal,
+            R.drawable.bebery_icon,
         ),
     )
     val member: List<FriaProfile>
