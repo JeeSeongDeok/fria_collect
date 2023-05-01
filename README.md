@@ -30,7 +30,7 @@
 
 ## 시작 가이드
 ### Requirement
-<p>프로젝트를 빌드하기 위해서는 아래와 같은 프로그램이 필요합니다.</p>
+프로젝트를 빌드하기 위해서는 아래와 같은 프로그램이 필요합니다.<br>
 - Android Gradle Plugin Version: 8.0.0-rc01
 - Gradle Version: 8.1-rc-2
 - Android Studio: Giraffe
