@@ -8,18 +8,18 @@
 
 ## 기술 스택
 ### Build
-- (kotlin-dsl)["https://docs.gradle.org/current/userguide/kotlin_dsl.html"]
-- (version catalog)["https://docs.gradle.org/current/userguide/platforms.html"]
+- [kotlin-dsl]("https://docs.gradle.org/current/userguide/kotlin_dsl.html")
+- [version catalog]("https://docs.gradle.org/current/userguide/platforms.html")
 ### Architecture
-- (Hilt)["https://developer.android.com/training/dependency-injection/hilt-android"]
-- (ViewModel)["https://developer.android.com/topic/libraries/architecture/viewmodel?hl=ko"]
-- (Compose)["https://developer.android.com/jetpack/compose?hl=ko"]
-- (Material3)["https://developer.android.com/jetpack/androidx/releases/compose-material3?hl=ko"]
-- (Retrofit2)["https://square.github.io/retrofit/"]
-- (Coroutines)["https://github.com/Kotlin/kotlinx.coroutines"]
+- [Hilt]("https://developer.android.com/training/dependency-injection/hilt-android")
+- [ViewModel]("https://developer.android.com/topic/libraries/architecture/viewmodel?hl=ko")
+- [Compose]("https://developer.android.com/jetpack/compose?hl=ko")
+- [Material3]("https://developer.android.com/jetpack/androidx/releases/compose-material3?hl=ko")
+- [Retrofit2]("https://square.github.io/retrofit/")
+- [Coroutines]("https://github.com/Kotlin/kotlinx.coroutines")
 
 ### Data
-- (Youtube Data API v3)["https://developers.google.com/youtube/v3?hl=ko"]
+- [Youtube Data API v3]("https://developers.google.com/youtube/v3?hl=ko")
 
 ## 주요 기능
 
