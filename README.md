@@ -34,7 +34,7 @@
 - Android Gradle Plugin Version: 8.0.0-rc01
 - Gradle Version: 8.1-rc-2
 - Android Studio: Giraffe
-참고: Android Studio를 Giraffe버전 이상 사용해야 Gradle Version 8.1을 사용할 수 있다. (주소)[https://developer.android.com/studio/releases?hl=ko]
+<p>참고: Android Studio를 Giraffe버전 이상 사용해야 Gradle Version 8.1을 사용할 수 있다. (주소)[https://developer.android.com/studio/releases?hl=ko]</p>
 
 ### Installation
 ``` bash
