@@ -9,18 +9,18 @@
 
 ## 기술 스택
 ### Build
-- [kotlin-dsl]("https://docs.gradle.org/current/userguide/kotlin_dsl.html")
-- [version catalog]("https://docs.gradle.org/current/userguide/platforms.html")
+* [kotlin-dsl](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+* [version catalog](https://docs.gradle.org/current/userguide/platforms.html)
 ### Architecture
-- [Hilt]("https://developer.android.com/training/dependency-injection/hilt-android")
-- [ViewModel]("https://developer.android.com/topic/libraries/architecture/viewmodel?hl=ko")
-- [Compose]("https://developer.android.com/jetpack/compose?hl=ko")
-- [Material3]("https://developer.android.com/jetpack/androidx/releases/compose-material3?hl=ko")
-- [Retrofit2]("https://square.github.io/retrofit/")
-- [Coroutines]("https://github.com/Kotlin/kotlinx.coroutines")
+* [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+* [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel?hl=ko)
+* [Compose](https://developer.android.com/jetpack/compose?hl=ko)
+* [Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3?hl=ko)
+* [Retrofit2](https://square.github.io/retrofit/)
+* [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 
 ### Data
-- [Youtube Data API v3]("https://developers.google.com/youtube/v3?hl=ko")
+* [Youtube Data API v3](https://developers.google.com/youtube/v3?hl=ko)
 
 ## 주요 기능
 작성 중...
@@ -31,10 +31,10 @@
 ## 시작 가이드
 ### Requirement
 프로젝트를 빌드하기 위해서는 아래와 같은 프로그램이 필요합니다.<br>
-- Android Gradle Plugin Version: 8.0.0-rc01
-- Gradle Version: 8.1-rc-2
-- Android Studio: Giraffe 
-- [Giraffe버전]("https://developer.android.com/studio/releases?hl=ko") 이상 사용해야 Gradle Version 8.1을 사용할 수 있다.
+* Android Gradle Plugin Version: 8.0.0-rc01
+* Gradle Version: 8.1-rc-2
+* Android Studio: Giraffe 
+* [Giraffe버전](https://developer.android.com/studio/releases?hl=ko) 이상 사용해야 Gradle Version 8.1을 사용할 수 있다.
 
 ### Installation
 ``` bash
