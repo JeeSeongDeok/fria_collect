@@ -23,8 +23,10 @@
 - [Youtube Data API v3]("https://developers.google.com/youtube/v3?hl=ko")
 
 ## 주요 기능
+작성 중...
 
 ## 아키텍쳐
+작성 중...
 
 ## 시작 가이드
 ### Requirement
