@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="@color/white"/>
+    </item>
+
+    <item
+        android:width="300dp"
+        android:height="180dp"
+        android:drawable="@drawable/fria_logo"
+        android:gravity="center"/>
+</layer-list>
