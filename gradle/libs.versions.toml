@@ -8,7 +8,7 @@ dagger = "2.45"
 # AndroiX
 compose = "1.4.2"
 compose-tool = "1.4.3"
-compose-material3 = "1.2.0-alpha02"
+compose-material3 = "1.2.0-alpha03"
 compose-lifecycle = "2.6.1"
 lifecycle = "2.6.1"
 activity = "1.7.2"
